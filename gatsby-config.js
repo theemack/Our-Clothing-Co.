@@ -1,3 +1,4 @@
+require("dotenv").config();
 module.exports = {
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
@@ -7,8 +8,8 @@ module.exports = {
     {
       resolve: "gatsby-source-shopify",
       options: {
-        shopName: "our-clothing-co.myshopify.com",
-        accessToken: "698b114653a65c4229a0a481ef90b24c",
+        password: process.env.SHOPIFY_ADMIN_PASSWORD,
+        storeUrl: process.env.GATSBY_SHOPIFY_STORE_URL,
       },
     },
     "gatsby-plugin-sass",
