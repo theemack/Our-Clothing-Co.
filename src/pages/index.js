@@ -1,11 +1,21 @@
 import * as React from "react";
+import { graphql } from "gatsby";
 import { Navigation } from "../components/Navigation";
 import { Header } from "../components/Header";
-import { Catalog } from "../components/Catalog";
+import { ProductList } from "../components/Collection";
 import "../styles/index.scss";
-import "../styles/globals.scss";
 
-const IndexPage = () => {
+export const query = graphql`
+  query {
+    shopifyCollection(handle: { eq: "best-sellers" }) {
+      products {
+        id
+      }
+    }
+  }
+`;
+
+const IndexPage = ({ data }) => {
   return (
     <div>
       <div className={`container-xxl`}>
@@ -13,7 +23,10 @@ const IndexPage = () => {
         <Header />
         <main>
           <h2 className={`text-center`}>Best Sellers</h2>
-          <Catalog />
+          <ProductList
+            collectionHandle={"Best Sellers"}
+            products={data.shopifyCollection.products}
+          />
         </main>
       </div>
     </div>
