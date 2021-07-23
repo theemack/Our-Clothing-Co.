@@ -2,7 +2,7 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { Navigation } from "../components/Navigation";
 import { Header } from "../components/Header";
-import { ProductList } from "../components/Collection";
+import { ProductList } from "../components/ProductList";
 import "../styles/index.scss";
 
 export const query = graphql`

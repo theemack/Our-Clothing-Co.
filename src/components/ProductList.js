@@ -1,23 +1,17 @@
 import React from "react";
 import { ProductCard } from "./ProductCard";
 
-export const ProductList = ({ collectionHandle }) => {
+export const ProductList = ({ products }) => {
   return (
     <div>
-      <h2 className={`text-center `}>{collectionHandle}</h2>
       <div className="row row-cols-2">
         {products.map((product) => {
-          <div className="col-md">
-            <ProductCard />
-          </div>;
+          return (
+            <div key={product.id} className="col-md">
+              <ProductCard product={product} />
+            </div>
+          );
         })}
-
-        <div className="col-md">
-          <ProductCard />
-        </div>
-        <div className="col-md">
-          <ProductCard />
-        </div>
       </div>
     </div>
   );

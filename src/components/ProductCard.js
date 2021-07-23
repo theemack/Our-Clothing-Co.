@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ProductCard = () => {
+export const ProductCard = ({ product }) => {
   return (
     <div>
       {/* product.image */}
@@ -12,10 +12,9 @@ export const ProductCard = () => {
         className={`card-img-top`}
       />
       <div className="card-body">
-        {/* product.title */}
-        <h5 className="cart-title">Shoes</h5>
+        <h5 className="cart-title">{product.title}</h5>
         {/* product.description */}
-        <p className="card-text">These are some white shoes</p>
+        {/* <p className="card-text">These are some white shoes</p> */}
       </div>
     </div>
   );
