@@ -9,8 +9,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         allShopifyCollection {
           edges {
             node {
+              id
               handle
               products {
+                id
                 handle
               }
             }
@@ -19,7 +21,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     `
   );
-
   // Handle errors
   if (result.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
@@ -39,7 +40,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       path: `products/${node.handle}`,
       component: collectionPageTemplate,
       context: {
-        collection: node.handle,
+        collectionID: node.id,
       },
     });
     node.products.forEach((product) => {
@@ -47,7 +48,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         path: `/products/${node.handle}/${product.handle}`,
         component: productPageTemplate,
         context: {
-          product: node.products.handle,
+          productID: product.id,
         },
       });
     });

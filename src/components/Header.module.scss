@@ -1,6 +1,6 @@
 @use '../styles/variables' as *;
 
-.hero {
+.headerImage {
   background-image: url("../images/greenshirts-large.jpg");
   background-position: center;
   height: 80vh;
@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.hero_text {
+.headerText {
   width: 80%;
   color: white;
   background-color: #dbb3b1;

@@ -15,6 +15,27 @@ $nav-link-color: $body-color;
 $nav-link-hover-color: $primary;
 $nav-link-font-size: $font-size-lg;
 $nav-link-font-weight: $font-weight-bold;
-$navbar-brand-margin-end: 0;
+
+// $navbar-brand-margin-end: 0;
 $heading-font-family: $custom-heading-font;
+
+$body-color: #02111b;
 @import "~bootstrap/scss/bootstrap";
+
+body {
+  background-image: url(../images/ag-square.png);
+}
+.card-title {
+  font-weight: bold;
+  @media screen and (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    color: #e9fae3;
+  }
+}

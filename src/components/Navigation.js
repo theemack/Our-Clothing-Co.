@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { RiShoppingCartFill } from "react-icons/ri";
 import {
@@ -10,28 +11,40 @@ import {
 
 export const Navigation = () => {
   return (
-    <nav className={`${wrapper} sticky-top pt-2 pb-2`}>
-      <div className={`${left_item} mr-auto`}>
-        <StaticImage
-          loading="eager"
-          height={80}
-          src="../images/logo.png"
-          alt="our clothing co. logo"
-        />
-      </div>
+    <nav className={`${wrapper} container-xl py-2`}>
+      <Link to="/">
+        <div className={`${left_item} mr-auto`}>
+          <StaticImage
+            loading="eager"
+            height={80}
+            src="../images/logo.png"
+            alt="our clothing co. logo"
+          />
+        </div>
+      </Link>
+
       <ul className={`${middle_item} nav d-flex justify-content-around`}>
         <li className="nav-item ">
-          <a href="/women" className="nav-link ">
+          <a
+            href={`${window.location.origin}/products/women`}
+            className="nav-link "
+          >
             Women
           </a>
         </li>
         <li className="nav-item">
-          <a href="/men" className="nav-link">
+          <a
+            href={`${window.location.origin}/products/men`}
+            className="nav-link"
+          >
             Men
           </a>
         </li>
         <li className="nav-item">
-          <a href="/kids" className="nav-link">
+          <a
+            href={`${window.location.origin}/products/kid`}
+            className="nav-link"
+          >
             Kids
           </a>
         </li>

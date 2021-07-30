@@ -1,36 +1,46 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { Navigation } from "../components/Navigation";
+import { Layout } from "../components/Layout";
 import { Header } from "../components/Header";
 import { ProductList } from "../components/ProductList";
 import "../styles/index.scss";
+import "../styles/global.scss";
+
+const IndexPage = ({ data }) => {
+  return (
+    <Layout>
+      <Header />
+      <main>
+        <h2 className={`display-2 text-center`}>Best Sellers</h2>
+        <ProductList products={data.allShopifyProduct.products} />
+      </main>
+    </Layout>
+  );
+};
 
 export const query = graphql`
   query {
-    shopifyCollection(handle: { eq: "best-sellers" }) {
-      products {
+    allShopifyProduct(filter: { tags: { eq: "bestseller" } }) {
+      products: nodes {
         id
+        title
+        handle
+        collections {
+          handle
+        }
+        images {
+          altText
+          src
+          height
+          width
+        }
+        priceRangeV2 {
+          maxVariantPrice {
+            amount
+          }
+        }
       }
     }
   }
 `;
-
-const IndexPage = ({ data }) => {
-  return (
-    <div>
-      <div className={`container-xxl`}>
-        <Navigation />
-        <Header />
-        <main>
-          <h2 className={`text-center`}>Best Sellers</h2>
-          <ProductList
-            collectionHandle={"Best Sellers"}
-            products={data.shopifyCollection.products}
-          />
-        </main>
-      </div>
-    </div>
-  );
-};
-
 export default IndexPage;
