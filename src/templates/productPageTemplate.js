@@ -16,7 +16,7 @@ export default function productPageTemplate({ data: { shopifyProduct } }) {
         <div className={`align-self-center`}>
           <h1>{shopifyProduct.title}</h1>
           <p className={`display-1 `}>$10</p>
-          <button className={`btn btn-primary mb-3 `}>Add to cart</button>
+          <button className={`btn btn-main mb-3`}>Add to cart</button>
           <p className={`description `}>{shopifyProduct.description}</p>
         </div>
       </div>
@@ -32,7 +32,7 @@ export const query = graphql`
       description
       images {
         src
-        gatsbyImageData(width: 500, breakpoints: 10, placeholder: "tracedSVG")
+        gatsbyImageData(width: 500, breakpoints: 10)
       }
     }
   }

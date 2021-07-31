@@ -1,5 +1,4 @@
 @import "node_modules/bootstrap/scss/mixins/_breakpoints";
-
 .wrapper {
   text-decoration: none;
   color: inherit;
@@ -13,6 +12,6 @@
 
 .cardImage {
   max-width: 200px;
-  height: auto;
+  // height: auto;
   margin: auto;
 }

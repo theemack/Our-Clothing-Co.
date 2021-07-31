@@ -31,6 +31,7 @@ export const query = graphql`
         images {
           altText
           src
+          gatsbyImageData(width: 200, breakpoints: 10)
           height
           width
         }
