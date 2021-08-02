@@ -1,68 +1,41 @@
 import React from "react";
 import { Link } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
 import { RiHome7Fill, RiShoppingCartFill } from "react-icons/ri";
-import {
-  wrapper,
-  icon,
-  left_item,
-  middle_item,
-  right_item,
-} from "./Navigation.module.scss";
+import { wrapper, icon, left_item, right_item } from "./Navigation.module.scss";
 
 export const Navigation = () => {
   return (
     <nav
       className={`${wrapper} container-xl py-2 d-flex  justify-content-between`}
     >
-      {/* <Link to="/"> */}
       <div className={`${left_item} d-flex`}>
-        <a
-          href={`${window.location.origin}/`}
-          className={`${icon} d-flex align-items-center`}
-        >
+        <Link to="/" className={`${icon} d-flex align-items-center`}>
           <RiHome7Fill />
-        </a>
+        </Link>
         <ul className={`nav `}>
           <li className="nav-item ">
-            <a
-              href={`${window.location.origin}/products/women`}
-              className="nav-link "
-            >
+            <Link to="/products/women" className="nav-link">
               Women
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a
-              href={`${window.location.origin}/products/men`}
-              className="nav-link"
-            >
+            <Link to="/products/men" className="nav-link">
               Men
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a
-              href={`${window.location.origin}/products/kid`}
-              className="nav-link"
-            >
+            <Link to="/products/kid" className="nav-link">
               Kids
-            </a>
+            </Link>
           </li>
         </ul>
-        {/* <StaticImage
-            loading="eager"
-            src="../images/logo.png"
-            alt="our clothing co. logo"
-          /> */}
       </div>
-      {/* </Link> */}
-
       <div
         className={`${(right_item, icon)} nav-item d-flex justify-content-end`}
       >
-        <a href={`${window.location.origin}/cart`} className="nav-link">
+        <Link to="/cart" className="nav-link">
           <RiShoppingCartFill className={`${icon} `} />
-        </a>
+        </Link>
       </div>
     </nav>
   );

@@ -8,13 +8,8 @@ const client = Client.buildClient({
 
 const defaultValues = {
   cart: [],
-  isOpen: false,
-  loading: false,
-  onOpen: () => {},
-  onClose: () => {},
-  addVariantToCart: () => {},
+  addProductToCart: () => {},
   removeLineItem: () => {},
-  updateLineItem: () => {},
   client,
   checkout: {
     lineItems: [],
@@ -28,8 +23,6 @@ const localStorageKey = "shopify_checkout_id";
 
 export const StoreProvider = ({ children }) => {
   const [checkout, setCheckout] = React.useState(defaultValues.checkout);
-  const [loading, setLoading] = React.useState(false);
-  const [didJustAddToCart, setDidJustAddToCart] = React.useState(false);
 
   const setCheckoutItem = (checkout) => {
     if (isBrowser) {
@@ -66,51 +59,27 @@ export const StoreProvider = ({ children }) => {
     initializeCheckout();
   }, []);
 
-  const addVariantToCart = (variantId, quantity) => {
-    setLoading(true);
-
-    const checkoutID = checkout.id;
-
+  const addProductToCart = (variantId) => {
+    const checkoutId = checkout.id;
     const lineItemsToUpdate = [
       {
         variantId,
-        quantity: parseInt(quantity, 10),
+        quantity: 1,
       },
     ];
 
     return client.checkout
-      .addLineItems(checkoutID, lineItemsToUpdate)
+      .addLineItems(checkoutId, lineItemsToUpdate)
       .then((res) => {
         setCheckout(res);
-        setLoading(false);
-        setDidJustAddToCart(true);
-        setTimeout(() => setDidJustAddToCart(false), 3000);
       });
   };
 
   const removeLineItem = (checkoutID, lineItemID) => {
-    setLoading(true);
-
     return client.checkout
       .removeLineItems(checkoutID, [lineItemID])
       .then((res) => {
         setCheckout(res);
-        setLoading(false);
-      });
-  };
-
-  const updateLineItem = (checkoutID, lineItemID, quantity) => {
-    setLoading(true);
-
-    const lineItemsToUpdate = [
-      { id: lineItemID, quantity: parseInt(quantity, 10) },
-    ];
-
-    return client.checkout
-      .updateLineItems(checkoutID, lineItemsToUpdate)
-      .then((res) => {
-        setCheckout(res);
-        setLoading(false);
       });
   };
 
@@ -118,12 +87,9 @@ export const StoreProvider = ({ children }) => {
     <StoreContext.Provider
       value={{
         ...defaultValues,
-        addVariantToCart,
+        addProductToCart,
         removeLineItem,
-        updateLineItem,
         checkout,
-        loading,
-        didJustAddToCart,
       }}
     >
       {children}

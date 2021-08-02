@@ -11,7 +11,7 @@ export const ProductCard = ({ product }) => {
     <div className={`${wrapper} p-3 card mb-3 text-center `}>
       <Link
         className={`${wrapper} `}
-        to={`${window.location.origin}/products/${product.collections[0].handle}/${product.handle}`}
+        to={`/products/${product.collections[0].handle}/${product.handle}`}
       >
         <GatsbyImage className={`${cardImage}`} image={image} alt="" />
         <div className="card-body">
